@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Facturas;
 use App\Clientes;
 use Illuminate\Http\Request;
@@ -15,7 +16,11 @@ class FacturasController extends Controller
 
     public function index()
     {
-        $facturas = Facturas::all();
+        $facturas = DB::table('facturas')
+        ->join('clientes', 'clientes.CLIENTE_ID', '=', 'facturas.CLIENTE')
+        ->select('facturas.*', 'clientes.CLIENTE_NOMBRE')
+        ->paginate(15);
+
         return view('registros', ['facturas'=>$facturas]);
     }
 /**

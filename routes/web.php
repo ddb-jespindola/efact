@@ -14,7 +14,7 @@ use App\Http\Controllers\FacturasController;
 |
 */
 
-Route::get('/registros', [FacturasController::class, 'index'])->name('/registros');
+Route::get('/registros', [FacturasController::class, 'index'])->name('/registros')->middleware('auth');
 
 //Route::redirect('/facturas/{anio}/{serie}/{factura}', '/verfactura', ['anio'=>$anio,'serie'=>$serie,'factura'=>$factura ]);
 
@@ -36,3 +36,9 @@ Route::post('/actualizar', [FacturasController::class, 'update'])->name('/actual
 //     $grabar = Facturas::create(['SERIE'=>'FE','EJERCICIO'=>'2021','FACTURA'=>'3333','CLIENTE'=>'4229','STATUS'=>'0', 'FECHA'=>'2021-02-20 00:00:00']);
 // });
 
+
+Auth::routes();
+
+Route::get('/', function(){
+    return redirect('/registros');
+});

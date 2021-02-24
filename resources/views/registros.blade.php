@@ -1,5 +1,15 @@
-<x-header/>
-<div class="bg-gray container mt-5">
+@extends('layouts.app')
+
+@section('content')
+
+<div class="container">
+    <div class="row" >
+        <div class="col-md-12 d-flex justify-content-center">
+            {{ $facturas->links() }}
+        </div>
+    </div>
+</div>
+<div class="bg-gray container">
     <table class="table table-bordered border-primary">
         <thead>
         <tr>
@@ -39,4 +49,12 @@
         </tbody>
 
     </table>
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-12 d-flex justify-content-center">
+                {{ $facturas->links() }}
+            </div>
+        </div>
+    </div>
   </div>
+  @endsection
