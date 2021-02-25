@@ -2,10 +2,12 @@
 
 @section('content')
 
+<x-searchform/>
+
 <div class="container">
     <div class="row" >
         <div class="col-md-12 d-flex justify-content-center">
-            {{ $facturas->links() }}
+            {{ $facturas->withQueryString()->links() }}
         </div>
     </div>
 </div>
@@ -14,9 +16,11 @@
         <thead>
         <tr>
             <th scope="col">Cliente</th>
+            <th scope="col">Nombre Cliente</th>
             <th scope="col">Ejercicio</th>
             <th scope="col">Serie</th>
-            <th scope="col">Factura</th>
+            <th scope="col">Numero Factura</th>
+            <th scope="col">Fecha Factura</th>
             <th scope="col">Estado factura</th>
         </tr>
         </thead>
@@ -24,9 +28,11 @@
             @foreach ($facturas as $factura)
                 <tr>
                     <td>{{$factura->CLIENTE}}</th>
+                    <td>{{$factura->CLIENTE_NOMBRE}}</td>
                     <td>{{$factura->EJERCICIO}}</td>
                     <td>{{$factura->SERIE}}</td>
                     <td>{{$factura->FACTURA}}</td>
+                    <td>{{$factura->FECHA}}</td>
                     
                         @if ($factura->STATUS == '0')  
                         <td class="">Sin acusar</td>
@@ -45,6 +51,7 @@
                         @endif
                     
                 </tr>
+                
             @endforeach  
         </tbody>
 
@@ -52,7 +59,7 @@
     <div class="container">
         <div class="row" >
             <div class="col-md-12 d-flex justify-content-center">
-                {{ $facturas->links() }}
+                {{ $facturas->withQueryString()->links() }}
             </div>
         </div>
     </div>

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Facturas;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FacturasController;
@@ -32,6 +34,8 @@ Route::get('/aprobar', [FacturasController::class, 'store']);
 
 Route::post('/actualizar', [FacturasController::class, 'update'])->name('/actualizar');
 
+Route::get('/search/{search?}', [FacturasController::class, 'search'])->name('/search');
+
 // Route::get('/grabar', function(){
 //     $grabar = Facturas::create(['SERIE'=>'FE','EJERCICIO'=>'2021','FACTURA'=>'3333','CLIENTE'=>'4229','STATUS'=>'0', 'FECHA'=>'2021-02-20 00:00:00']);
 // });
@@ -42,3 +46,5 @@ Auth::routes();
 Route::get('/', function(){
     return redirect('/registros');
 });
+
+

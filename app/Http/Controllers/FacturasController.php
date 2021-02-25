@@ -116,9 +116,26 @@ class FacturasController extends Controller
 * /////////////////////////////////////////////////////////////////////
 */
 
-    public function destroy(Facturas $facturas)
+    public function search(Request $request)
     {
+        // $facturas = DB::table('facturas')
+        // ->join('clientes', 'clientes.CLIENTE_ID', '=', 'facturas.CLIENTE')
+        // ->select('facturas.*', 'clientes.CLIENTE_NOMBRE')
+        // ->paginate(15);
+
+
+        $fromDate = $request->input('fromDate');
+        $toDate   = $request->input('toDate');
+        $other    = $request->input('other');
+
+        $facturas = DB::table('facturas')->select()
+            ->where('FECHA', '>=', $fromDate)
+            ->where('FECHA', '<=', $toDate)
+            ->join('clientes', 'clientes.CLIENTE_ID', '=', 'facturas.CLIENTE')
+            ->select('facturas.*', 'clientes.CLIENTE_NOMBRE')
+            ->paginate(15);
         
+        return view('registros', ['facturas'=>$facturas]);
     }
 
 /**
