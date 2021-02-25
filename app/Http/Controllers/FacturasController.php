@@ -118,19 +118,31 @@ class FacturasController extends Controller
 
     public function search(Request $request)
     {
+        date_default_timezone_set('America/Bogota');
+        $fechaActual = date('Y-m-d'). " 00:00:00";
+
         // $facturas = DB::table('facturas')
         // ->join('clientes', 'clientes.CLIENTE_ID', '=', 'facturas.CLIENTE')
         // ->select('facturas.*', 'clientes.CLIENTE_NOMBRE')
         // ->paginate(15);
 
+        //return $request;
 
         $fromDate = $request->input('fromDate');
         $toDate   = $request->input('toDate');
-        $other    = $request->input('other');
+        $serie    = $request->input('serie');
+        $factura  = $request->input('factura');
+        $status  = $request->input('estado');
+
+        is_null($fromDate) ? $fromDate = '01-01-1999 00:00:00' : $fromDate;
+        is_null($toDate) ? $toDate = $fechaActual : $toDate;
 
         $facturas = DB::table('facturas')->select()
             ->where('FECHA', '>=', $fromDate)
             ->where('FECHA', '<=', $toDate)
+            ->where('SERIE', 'like', '%'.$serie.'%')
+            ->where('FACTURA', 'like', '%'.$factura.'%')
+            ->where('STATUS', 'like', '%'.$status.'%')
             ->join('clientes', 'clientes.CLIENTE_ID', '=', 'facturas.CLIENTE')
             ->select('facturas.*', 'clientes.CLIENTE_NOMBRE')
             ->paginate(15);
