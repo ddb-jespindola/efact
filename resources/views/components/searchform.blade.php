@@ -38,7 +38,7 @@
                                 <option value="">Selecione una opción</option>
                                 <option value="0">Sin acusar</option>
                                 <option value="1">Acusado</option>
-                                <option value="2">Acusado tacitamente</option>
+                                <option value="2">Aceptado tacitamente</option>
                                 <option value="3">Aceptada</option>
                                 <option value="4">Rechazada</option>
                             </select>
