@@ -22,24 +22,11 @@ Route::get('/registros', [FacturasController::class, 'index'])->name('/registros
 
 Route::get('/aprobar', [FacturasController::class, 'store']);
 
-// Route::get('/facturas', function(){
-//     return view('aceptaFactura',['id'=>request('familia')]);
-// })->name('/facturas');
-
-//Route::get('/confirmacion/{id}', [FacturasController::class, 'show'])->name('/confirmacion');
-
-// Route::get('/facturas', function(){
-//     return view('aceptaFactura',['anio'=>$anio,'serie'=>$serie,'factura'=>$factura]);
-// });
-
 Route::post('/actualizar', [FacturasController::class, 'update'])->name('/actualizar');
 
 Route::get('/search/{search?}', [FacturasController::class, 'search'])->name('/search');
 
-// Route::get('/grabar', function(){
-//     $grabar = Facturas::create(['SERIE'=>'FE','EJERCICIO'=>'2021','FACTURA'=>'3333','CLIENTE'=>'4229','STATUS'=>'0', 'FECHA'=>'2021-02-20 00:00:00']);
-// });
-
+Route::get('/stateupdater', [FacturasController::class, 'efactActualizador'])->name('/stateupdater');
 
 Auth::routes();
 
