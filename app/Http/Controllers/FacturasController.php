@@ -165,7 +165,7 @@ class FacturasController extends Controller
             ->where('STATUS', '=', '1')
             ->where('updated_at', '<=', $limitDate)
             ->get();
-        return $limitDate;
+        return $facturas;
     }
     
     
