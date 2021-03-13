@@ -154,7 +154,7 @@ class FacturasController extends Controller
 * FUNCION PARA ACTUALIZAR ACEPTADAS TACITAMENTE /////////////////////////////////////////////////////////////////////
 */
     public function efactActualizador(){
-        $facturas = DB::table('facturas')->select()->where('STATUS', '=', '1');
+        $facturas = DB::table('facturas')->where('STATUS', '=', '1')->get();
         return $facturas;
     }
     
