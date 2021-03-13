@@ -154,7 +154,17 @@ class FacturasController extends Controller
 * FUNCION PARA ACTUALIZAR ACEPTADAS TACITAMENTE /////////////////////////////////////////////////////////////////////
 */
     public function efactActualizador(){
-        $facturas = DB::table('facturas')->where('STATUS', '=', '1')->get();
+        
+        
+        $fact = Facturas::where('CONCAT', '=', Request('dat'))->first();
+        $now = Carbon::now('America/Bogota');
+        $limitDate = $now->subHours(72);
+        
+        
+        $facturas = DB::table('facturas')
+            ->where('STATUS', '=', '1')
+            ->where('updated_at', '<=', $limitDate);
+            ->get();
         return $facturas;
     }
     
