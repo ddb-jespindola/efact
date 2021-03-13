@@ -163,7 +163,7 @@ class FacturasController extends Controller
         
         $facturas = DB::table('facturas')
             ->where('STATUS', '=', '1')
-            ->where('updated_at', '<=', $limitDate);
+            ->where('updated_at', '<=', $limitDate)
             ->get();
         return $facturas;
     }
